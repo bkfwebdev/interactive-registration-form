@@ -32,3 +32,19 @@ $("#design").change (function(){
         }
     }
     });
+// dynamic itinerary update
+var itineraryList = [];
+// get checkbox input string
+$('input[type="checkbox"]').on("click", function(){
+    console.log($(this).parent().html());
+// if itinerary is empty add event
+// else check for conflicts
+// if no conflicts add event and add cost to tally
+})
+// array to contain selected events
+// variable to tally cost of events
+// regex for time
+// regex for weekday
+// regex for cash
+// you will need to scan the input for each of these regular expressions
+// keep registerd events in the array, compare for conflicts, update tally
