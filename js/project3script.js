@@ -2,6 +2,7 @@
 $(document).ready(function(){$("#name").focus();}); 
 // if job role is "other" add text area
 var otherText = document.createElement("textarea");
+var lineBreak = document.createElement("br");
 otherText.setAttribute("rows","1");
 otherText.setAttribute("cols","30");
 otherText.setAttribute("id","other-title");
@@ -10,6 +11,7 @@ $("#title").change(function(){
 	var jobRole = $("#title").val();
 	console.log(jobRole);
 	if (jobRole === "other"){
+        $("fieldset")[0].append(lineBreak);
 		$("fieldset")[0].append(otherText); 
 		}
 }); 
@@ -33,14 +35,24 @@ $("#design").change (function(){
     }
     });
 // dynamic itinerary update
-var itineraryList = [];
 // get checkbox input string
-$('input[type="checkbox"]').on("click", function(){
-    console.log($(this).parent().html());
+var checkBoxes = $(".activities input[type='checkbox']" );
+//checkBoxes.forEach(function(){
+    //this.onclick = function(){
+        //console.log(this.indexOf);
+   // }})
+checkBoxes.change(function(){
+console.log("a box was checked");
+var selected_id = Array.prototype.indexOf.call(checkBoxes, this);
+console.log(selected_id);
+})
+//$('input[type="checkbox"]').on("click", function(){
+//console.log( $(this).parent().html());
+// });
+// console.log($(this).name);
 // if itinerary is empty add event
 // else check for conflicts
 // if no conflicts add event and add cost to tally
-})
 // array to contain selected events
 // variable to tally cost of events
 // regex for time
