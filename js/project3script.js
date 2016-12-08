@@ -45,6 +45,30 @@ checkBoxes.change(function(){
 console.log("a box was checked");
 var selected_id = Array.prototype.indexOf.call(checkBoxes, this);
 console.log(selected_id);
+if (selected_id === 1){
+    checkBoxes[3].disabled = true;
+    if(checkBoxes[1].checked === false){
+        checkBoxes[3].disabled = false;
+    }
+}
+if (selected_id === 3){
+    checkBoxes[1].disabled = true;
+    if(checkBoxes[3].checked === false){
+        checkBoxes[1].disabled = false;
+    }
+}
+if (selected_id === 2){
+    checkBoxes[4].disabled = true;
+    if(checkBoxes[2].checked === false){
+        checkBoxes[4].disabled = false;
+    }
+}
+if (selected_id === 4){
+    checkBoxes[2].disabled = true;
+    if (checkBoxes[4].checked === false){
+         checkBoxes[2].disabled = false;
+    }
+}
 })
 //$('input[type="checkbox"]').on("click", function(){
 //console.log( $(this).parent().html());
