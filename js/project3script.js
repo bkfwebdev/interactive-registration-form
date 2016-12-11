@@ -35,52 +35,55 @@ $("#design").change (function(){
     }
     });
 // dynamic itinerary update
-// get checkbox input string
+var regTotal = 0;
+var totalBox = document.createElement("p");
+var totalBoxText = "";
+$(".activities").append(totalBox);
 var checkBoxes = $(".activities input[type='checkbox']" );
-//checkBoxes.forEach(function(){
-    //this.onclick = function(){
-        //console.log(this.indexOf);
-   // }})
 checkBoxes.change(function(){
 console.log("a box was checked");
 var selected_id = Array.prototype.indexOf.call(checkBoxes, this);
 console.log(selected_id);
 if (selected_id === 1){
     checkBoxes[3].disabled = true;
+    regTotal = regTotal + 100;
+    
+
     if(checkBoxes[1].checked === false){
         checkBoxes[3].disabled = false;
     }
 }
 if (selected_id === 3){
     checkBoxes[1].disabled = true;
+    regTotal = regTotal + 100;
+    
     if(checkBoxes[3].checked === false){
         checkBoxes[1].disabled = false;
     }
 }
 if (selected_id === 2){
     checkBoxes[4].disabled = true;
+    regTotal = regTotal + 100;
+ 
     if(checkBoxes[2].checked === false){
         checkBoxes[4].disabled = false;
     }
 }
 if (selected_id === 4){
     checkBoxes[2].disabled = true;
+    regTotal = regTotal + 100;
+ 
     if (checkBoxes[4].checked === false){
          checkBoxes[2].disabled = false;
     }
 }
+    totalBoxText = "YOUR REGISTRATION TOTAL IS: $" + regTotal + ".00";
+    totalBox.innerHTML = totalBoxText;
+    console.log(regTotal);
 })
-//$('input[type="checkbox"]').on("click", function(){
-//console.log( $(this).parent().html());
-// });
-// console.log($(this).name);
-// if itinerary is empty add event
-// else check for conflicts
-// if no conflicts add event and add cost to tally
-// array to contain selected events
-// variable to tally cost of events
-// regex for time
-// regex for weekday
-// regex for cash
-// you will need to scan the input for each of these regular expressions
-// keep registerd events in the array, compare for conflicts, update tally
+
+/*
+var tallyCost = function (){}
+var displayCost = function (){}
+*/
+
