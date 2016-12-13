@@ -36,6 +36,7 @@ $("#design").change (function(){
     });
 // dynamic itinerary update
 var regTotal = 0;
+var checkboxToggle = [];
 var totalBox = document.createElement("p");
 var totalBoxText = "";
 $(".activities").append(totalBox);
@@ -44,21 +45,14 @@ checkBoxes.change(function(){
 console.log("a box was checked");
 var selected_id = Array.prototype.indexOf.call(checkBoxes, this);
 console.log(selected_id);
+if (selected_id === 0){
+    regTotal = regTotal + 200;
+}
 if (selected_id === 1){
     checkBoxes[3].disabled = true;
     regTotal = regTotal + 100;
-    
-
-    if(checkBoxes[1].checked === false){
+       if(checkBoxes[1].checked === false){
         checkBoxes[3].disabled = false;
-    }
-}
-if (selected_id === 3){
-    checkBoxes[1].disabled = true;
-    regTotal = regTotal + 100;
-    
-    if(checkBoxes[3].checked === false){
-        checkBoxes[1].disabled = false;
     }
 }
 if (selected_id === 2){
@@ -69,6 +63,14 @@ if (selected_id === 2){
         checkBoxes[4].disabled = false;
     }
 }
+if (selected_id === 3){
+    checkBoxes[1].disabled = true;
+    regTotal = regTotal + 100;
+    
+    if(checkBoxes[3].checked === false){
+        checkBoxes[1].disabled = false;
+    }
+}
 if (selected_id === 4){
     checkBoxes[2].disabled = true;
     regTotal = regTotal + 100;
@@ -77,6 +79,8 @@ if (selected_id === 4){
          checkBoxes[2].disabled = false;
     }
 }
+if (selected_id === 5){regTotal = regTotal + 100;}
+if (selected_id === 6){regTotal = regTotal + 100;}
     totalBoxText = "YOUR REGISTRATION TOTAL IS: $" + regTotal + ".00";
     totalBox.innerHTML = totalBoxText;
     console.log(regTotal);
