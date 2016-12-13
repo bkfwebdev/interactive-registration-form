@@ -37,6 +37,9 @@ $("#design").change (function(){
 // dynamic itinerary update
 var regTotal = 0;
 var checkboxToggle = [];
+for (x=0; x<=6; x++){
+    checkboxToggle[x] = false;
+}
 var totalBox = document.createElement("p");
 var totalBoxText = "";
 $(".activities").append(totalBox);
@@ -46,7 +49,15 @@ console.log("a box was checked");
 var selected_id = Array.prototype.indexOf.call(checkBoxes, this);
 console.log(selected_id);
 if (selected_id === 0){
+    if (checkboxToggle[0] === false){
     regTotal = regTotal + 200;
+        checkboxToggle[0] = true;
+    }else{
+    if(checkboxToggle[0] === true){
+        regTotal = regTotal - 200;
+        checkboxToggle[0] = false
+    }
+    }
 }
 if (selected_id === 1){
     checkBoxes[3].disabled = true;
