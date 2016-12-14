@@ -60,38 +60,79 @@ if (selected_id === 0){
     }
 }
 if (selected_id === 1){
-    checkBoxes[3].disabled = true;
+    if (checkboxToggle[1] === false){
     regTotal = regTotal + 100;
-       if(checkBoxes[1].checked === false){
+    checkBoxes[3].disabled = true;
+    checkboxToggle[1] = true;
+    }else{
+    if(checkboxToggle[1] === true){
+        regTotal = regTotal - 100;
         checkBoxes[3].disabled = false;
+        checkboxToggle[1] = false;
     }
+}
 }
 if (selected_id === 2){
-    checkBoxes[4].disabled = true;
+    if (checkboxToggle[2] === false){
     regTotal = regTotal + 100;
- 
-    if(checkBoxes[2].checked === false){
+    checkBoxes[4].disabled = true;
+    checkboxToggle[2] = true;
+    }else{
+    if(checkboxToggle[2] === true){
+        regTotal = regTotal - 100;
         checkBoxes[4].disabled = false;
+        checkboxToggle[2] = false;
     }
+}
 }
 if (selected_id === 3){
-    checkBoxes[1].disabled = true;
+    if (checkboxToggle[3] === false){
     regTotal = regTotal + 100;
-    
-    if(checkBoxes[3].checked === false){
-        checkBoxes[1].disabled = false;
+    checkBoxes[5].disabled = true;
+    checkboxToggle[3] = true;
+    }else{
+    if(checkboxToggle[3] === true){
+        regTotal = regTotal - 100;
+        checkBoxes[5].disabled = false;
+        checkboxToggle[3] = false;
     }
+}
 }
 if (selected_id === 4){
-    checkBoxes[2].disabled = true;
+    if (checkboxToggle[4] === false){
     regTotal = regTotal + 100;
- 
-    if (checkBoxes[4].checked === false){
-         checkBoxes[2].disabled = false;
+    checkBoxes[2].disabled = true;
+    checkboxToggle[4] = true;
+    }else{
+    if(checkboxToggle[4] === true){
+        regTotal = regTotal - 100;
+        checkBoxes[2].disabled = false;
+        checkboxToggle[4] = false;
     }
 }
-if (selected_id === 5){regTotal = regTotal + 100;}
-if (selected_id === 6){regTotal = regTotal + 100;}
+}
+if (selected_id === 5){
+    if (checkboxToggle[5] === false){
+    regTotal = regTotal + 100;
+    checkboxToggle[5] = true;
+    }else{
+    if(checkboxToggle[5] === true){
+        regTotal = regTotal - 100;
+        checkboxToggle[5] = false;
+    }
+}
+}
+if (selected_id === 6){
+    if (checkboxToggle[6] === false){
+    regTotal = regTotal + 100;
+    checkboxToggle[6] = true;
+    }else{
+    if(checkboxToggle[6] === true){
+    regTotal = regTotal - 100;
+    checkboxToggle[6] = false;
+    }
+}
+}
     totalBoxText = "YOUR REGISTRATION TOTAL IS: $" + regTotal + ".00";
     totalBox.innerHTML = totalBoxText;
     console.log(regTotal);
