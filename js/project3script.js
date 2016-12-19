@@ -133,13 +133,31 @@ if (selected_id === 6){
     }
 }
 }
+// show registration total at bottom of registration section
     totalBoxText = "YOUR REGISTRATION TOTAL IS: $" + regTotal + ".00";
     totalBox.innerHTML = totalBoxText;
     console.log(regTotal);
 })
 
-/*
-var tallyCost = function (){}
-var displayCost = function (){}
-*/
+// payment section & form validation
+var errorMessage = [];
+errorMessage[0] = "Name field can't be empty"
+errorMessage[1] = "Email field must be a validly formatted e-mail address"
+errorMessage[2] = "At least one activity must be checked from the list under Register for Actitivities."
+errorMessage[3] = "Payment option must be selected."
+errorMessage[4] = "If Credit Card is the selected payment option, make sure you have supplied a credit card number, a zip code, and a 3 number CVV value."
+var formCheck = [];
+for (x=0; x<=4; x++){
+    formCheck[x] = false;
+}
+if ($("#name").val() != ""){formCheck[0] = true;}
+// if ($("#email")){regex email test formCheck[1] = true}
+if (regTotal != 0){formCheck[2] = true;}
+// if ( valid payment option selected){formCheck[3] = true;}
+// if ( car info is valid){formCheck[4] = true;}
+
+// on submit check form validation conditions
+// promp user withh appropriate error message
+// prevent default on submit if any of the 5 checks are false
+
 
