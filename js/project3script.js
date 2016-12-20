@@ -138,7 +138,11 @@ if (selected_id === 6){
     totalBox.innerHTML = totalBoxText;
     console.log(regTotal);
 })
-
+//hide/show active payment option (credit card as default)
+/* The "Credit Card" payment option should be selected by default and result in the display of the #credit-card div, and hide the "Paypal" and "Bitcoin information.
+When a user selects the "PayPal" payment option, display the Paypal information, and hide the credit card information and the "Bitcoin" information.
+When a user selects the "Bitcoin" payment option, display the Bitcoin information, and hide the credit card information.
+*/
 // payment section & form validation
 var errorMessage = [];
 errorMessage[0] = "Name field can't be empty"
