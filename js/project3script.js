@@ -139,6 +139,10 @@ if (selected_id === 6){
     console.log(regTotal);
 })
 //hide/show active payment option (credit card as default)
+// grab paragraphs for bitcoin and pay pal
+var thePs =  $("p").parent("div");
+// grab credit card input div
+var creditCard = $("#credit-card");
 /* The "Credit Card" payment option should be selected by default and result in the display of the #credit-card div, and hide the "Paypal" and "Bitcoin information.
 When a user selects the "PayPal" payment option, display the Paypal information, and hide the credit card information and the "Bitcoin" information.
 When a user selects the "Bitcoin" payment option, display the Bitcoin information, and hide the credit card information.
