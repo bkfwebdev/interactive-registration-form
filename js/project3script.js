@@ -143,6 +143,30 @@ if (selected_id === 6){
 var thePs =  $("p").parent("div");
 // grab credit card input div
 var creditCard = $("#credit-card");
+$("#payment").change(function(){
+var paySelect = $("#payment").val();
+    console.log(paySelect);
+if (paySelect == "Bitcoin"){
+    thePs[0].style.display = "none";
+    thePs[1].style.display = "block";
+    creditCard.style.display = "none";
+} else {
+if (paySelect == "PayPal"){
+    thePs[0].style.display = "block";
+    thePs[1].style.display = "none";
+    creditCard.style.display = "none";
+} else {
+if (paySelect == "Credit Card"){
+    thePs[0].style.display = "none";
+    thePs[1].style.display = "none";
+    creditCard.style.display = "block";
+}
+}
+}
+});
+
+
+ 
 /* The "Credit Card" payment option should be selected by default and result in the display of the #credit-card div, and hide the "Paypal" and "Bitcoin information.
 When a user selects the "PayPal" payment option, display the Paypal information, and hide the credit card information and the "Bitcoin" information.
 When a user selects the "Bitcoin" payment option, display the Bitcoin information, and hide the credit card information.
