@@ -141,36 +141,31 @@ if (selected_id === 6){
 //hide/show active payment option (credit card as default)
 // grab paragraphs for bitcoin and pay pal
 var thePs =  $("p").parent("div");
+thePs[0].style.display = "none";
+thePs[1].style.display = "none";
 // grab credit card input div
 var creditCard = $("#credit-card");
 $("#payment").change(function(){
-var paySelect = $("#payment").val();
-    console.log(paySelect);
-if (paySelect == "Bitcoin"){
-    thePs[0].style.display = "none";
-    thePs[1].style.display = "block";
-    creditCard.style.display = "none";
+// console.log($("#payment").val())
+if ($("#payment").val() == "bitcoin"){
+    // console.log("option 1");
+   $("p").parent("div")[0].style.display = "none";
+   $("p").parent("div")[1].style.display = "block";
+   document.getElementById("credit-card").style.display = "none";
 } else {
-if (paySelect == "PayPal"){
-    thePs[0].style.display = "block";
-    thePs[1].style.display = "none";
-    creditCard.style.display = "none";
+    // console.log("option 2");
+if ($("#payment").val() == "paypal"){
+    $("p").parent("div")[0].style.display = "block";
+    $("p").parent("div")[1].style.display = "none";
+    document.getElementById("credit-card").style.display = "none";
 } else {
-if (paySelect == "Credit Card"){
-    thePs[0].style.display = "none";
-    thePs[1].style.display = "none";
-    creditCard.style.display = "block";
-}
+    // console.log("option 3");
+    $("p").parent("div")[0].style.display = "none";
+    $("p").parent("div")[1].style.display = "none";
+    document.getElementById("credit-card").style.display = "block";
 }
 }
 });
-
-
- 
-/* The "Credit Card" payment option should be selected by default and result in the display of the #credit-card div, and hide the "Paypal" and "Bitcoin information.
-When a user selects the "PayPal" payment option, display the Paypal information, and hide the credit card information and the "Bitcoin" information.
-When a user selects the "Bitcoin" payment option, display the Bitcoin information, and hide the credit card information.
-*/
 // payment section & form validation
 var errorMessage = [];
 errorMessage[0] = "Name field can't be empty"
