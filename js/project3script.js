@@ -26,12 +26,13 @@ $("#design").change (function(){
         theColors[x].style.display = "block";
             theColors[x+3].style.display = "none";
         }
-    }
+    } else {
     if (designSelect == "heart js"){
         for (x=0;x<=2; x++){
          theColors[x].style.display = "none";
             theColors[x+3].style.display = "block";
         }
+    }
     }
     });
 // dynamic itinerary update
@@ -42,10 +43,13 @@ for (x=0; x<=6; x++){
 }
 var totalBox = document.createElement("p");
 var totalBoxText = "";
+
+
+totalBox.setAttribute("ID","totalBox");
 $(".activities").append(totalBox);
 var checkBoxes = $(".activities input[type='checkbox']" );
 checkBoxes.change(function(){
-console.log("a box was checked");
+
 var selected_id = Array.prototype.indexOf.call(checkBoxes, this);
 console.log(selected_id);
 if (selected_id === 0){
@@ -134,10 +138,18 @@ if (selected_id === 6){
 }
 }
 // show registration total at bottom of registration section
-    totalBoxText = "YOUR REGISTRATION TOTAL IS: $" + regTotal + ".00";
+   if (regTotal > 0){ 
+    totalBoxText = "TOTAL: $" + regTotal + ".00";
     totalBox.innerHTML = totalBoxText;
-    console.log(regTotal);
+   } else {
+       totalBoxText = "";
+       totalBox.innerHTML = totalBoxText;
+   }
+   
+    
+   
 })
+
 //hide/show active payment option (credit card as default)
 // grab paragraphs for bitcoin and pay pal
 var thePs =  $("p").parent("div");
