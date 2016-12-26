@@ -16,12 +16,14 @@ $("#title").change(function(){
 		}
 }); 
 // hide invalid & show valid color select options for current t-shirt theme
+    
 $("#design").change (function(){
     var designSelect = $("#design").val();
     var x = null;
     var theColors = $("#color > option");
+    var colorLimit = theColors.length - 1;
 
-    if (designSelect == "js puns"){
+if (designSelect == "js puns"){
         for(x=0; x<=2; x++){
         theColors[x].style.display = "block";
             theColors[x+3].style.display = "none";
@@ -31,7 +33,8 @@ $("#design").change (function(){
         for (x=0;x<=2; x++){
          theColors[x].style.display = "none";
             theColors[x+3].style.display = "block";
-        }
+         }
+        
     }
     }
     });
@@ -191,12 +194,9 @@ for (x=0; x<=4; x++){
 }
 if ($("#name").val() != ""){formCheck[0] = true;}
 // if ($("#email")){regex email test formCheck[1] = true}
-if (regTotal != 0){formCheck[2] = true;}
+if (regTotal > 0){formCheck[2] = true;}
 // if ( valid payment option selected){formCheck[3] = true;}
-// if ( car info is valid){formCheck[4] = true;}
-
+// if ( cc info is valid){formCheck[4] = true;}
 // on submit check form validation conditions
-// promp user withh appropriate error message
+// prompt user withh appropriate error message
 // prevent default on submit if any of the 5 checks are false
-
-
