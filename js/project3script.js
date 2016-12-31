@@ -15,29 +15,26 @@ $("#title").change(function(){
 		$("fieldset")[0].append(otherText); 
 		}
 }); 
-// hide invalid & show valid color select options for current t-shirt theme
-    
-$("#design").change (function(){
-    var designSelect = $("#design").val();
-    var x = null;
-    var theColors = $("#color > option");
-    var colorLimit = theColors.length - 1;
 
-if (designSelect == "js puns"){
-        for(x=0; x<=2; x++){
-        theColors[x].style.display = "block";
-            theColors[x+3].style.display = "none";
-        }
-    } else {
-    if (designSelect == "heart js"){
-        for (x=0;x<=2; x++){
-         theColors[x].style.display = "none";
-            theColors[x+3].style.display = "block";
-         }
-        
-    }
-    }
+// hide invalid & show valid color select options for current t-shirt theme
+var colorSelectGuts = $("#color").html();
+var index1 = colorSelectGuts.indexOf('<option value="tomato">Tomato (I  ♥ JS shirt only)</option>');
+var index2 = colorSelectGuts.length - 1;
+var index3 = index1 - 1;
+var heartJS = colorSelectGuts.slice(index1,index2);
+var jsPuns = colorSelectGuts.slice(0,index3);
+$("#design").change (function(){
+    if ($("#design").val() == "js puns"){
+       $("#color").html(jsPuns);
+     } 
+    if ($("#design").val() == "heart js"){
+        $("#color").html(heartJS);
+         } 
+
+    
+    
     });
+
 // dynamic itinerary update
 var regTotal = 0;
 var checkboxToggle = [];

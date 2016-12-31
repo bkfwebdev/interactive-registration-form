@@ -1,0 +1,54 @@
+Uncaught TypeError: colorSelectGuts.IndexOf is not a function
+    at HTMLSelectElement.<anonymous> (project3script.js:23)
+    at HTMLSelectElement.dispatch (jquery.min.js:3)
+    at HTMLSelectElement.q.handle (jquery.min.js:3)
+(anonymous) @ project3script.js:23
+dispatch @ jquery.min.js:3
+q.handle @ jquery.min.js:3
+console.log(colorSelectGuts)
+VM91:1 Uncaught ReferenceError: colorSelectGuts is not defined
+    at <anonymous>:1:13
+(anonymous) @ VM91:1
+$("#color").html()
+"
+            <option value="cornflowerblue">Cornflower Blue (JS Puns shirt only)</option>
+            <option value="darkslategrey">Dark Slate Grey (JS Puns shirt only)</option> 
+            <option value="gold">Gold (JS Puns shirt only)</option> 
+            <option value="tomato">Tomato (I  ♥ JS shirt only)</option>
+            <option value="steelblue">Steel Blue (I ♥ JS shirt only)</option> 
+            <option value="dimgrey">Dim Grey (I ♥ JS shirt only)</option> 
+          "
+colorSelectGuts = $("#color")
+[select#color]
+typeof(colorSelectGuts)
+"object"
+colorSelectGuts = $("#color").html()
+"
+            <option value="cornflowerblue">Cornflower Blue (JS Puns shirt only)</option>
+            <option value="darkslategrey">Dark Slate Grey (JS Puns shirt only)</option> 
+            <option value="gold">Gold (JS Puns shirt only)</option> 
+            <option value="tomato">Tomato (I  ♥ JS shirt only)</option>
+            <option value="steelblue">Steel Blue (I ♥ JS shirt only)</option> 
+            <option value="dimgrey">Dim Grey (I ♥ JS shirt only)</option> 
+          "
+typeof(colorSelectGuts)
+"string"
+colorSelectGuts.indexOf('<option value="tomato">Tomato (I  ♥ JS shirt only)</option>')
+260
+colorSelectGuts.length
+484
+jsHeart = colorSelectGuts.slice(260,483)
+"<option value="tomato">Tomato (I  ♥ JS shirt only)</option>
+            <option value="steelblue">Steel Blue (I ♥ JS shirt only)</option> 
+            <option value="dimgrey">Dim Grey (I ♥ JS shirt only)</option> 
+         "
+jsPuns = colorSelectGuts.slice(0,259)
+"
+            <option value="cornflowerblue">Cornflower Blue (JS Puns shirt only)</option>
+            <option value="darkslategrey">Dark Slate Grey (JS Puns shirt only)</option> 
+            <option value="gold">Gold (JS Puns shirt only)</option> 
+           "
+$("#color").html(jsHeart)
+[select#color]
+$("#color").html(jsPuns)
+[select#color]
