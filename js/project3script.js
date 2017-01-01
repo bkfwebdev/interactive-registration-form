@@ -1,5 +1,8 @@
-// on page load set focus to the name input field
-$(document).ready(function(){$("#name").focus();}); 
+// on page load set focus to the name input field & hide job role "other" text area
+$(document).ready(function(){
+    $("#name").focus();
+    $("#other-title").hide();
+}); 
 // if job role is "other" add text area
 var otherText = document.createElement("textarea");
 var lineBreak = document.createElement("br");
@@ -8,11 +11,8 @@ otherText.setAttribute("cols","30");
 otherText.setAttribute("id","other-title");
 otherText.setAttribute("placeholder","Your Title");
 $("#title").change(function(){
-	var jobRole = $("#title").val();
-	console.log(jobRole);
-	if (jobRole === "other"){
-        $("fieldset")[0].append(lineBreak);
-		$("fieldset")[0].append(otherText); 
+	if ($("#title").val() === "other"){
+      $("#other-title").show();
 		}
 }); 
 
@@ -30,10 +30,7 @@ $("#design").change (function(){
     if ($("#design").val() == "heart js"){
         $("#color").html(heartJS);
          } 
-
-    
-    
-    });
+});
 
 // dynamic itinerary update
 var regTotal = 0;
@@ -43,8 +40,6 @@ for (x=0; x<=6; x++){
 }
 var totalBox = document.createElement("p");
 var totalBoxText = "";
-
-
 totalBox.setAttribute("ID","totalBox");
 $(".activities").append(totalBox);
 var checkBoxes = $(".activities input[type='checkbox']" );
@@ -145,11 +140,7 @@ if (selected_id === 6){
        totalBoxText = "";
        totalBox.innerHTML = totalBoxText;
    }
-   
-    
-   
 })
-
 //hide/show active payment option (credit card as default)
 // grab paragraphs for bitcoin and pay pal
 var thePs =  $("p").parent("div");
@@ -179,21 +170,103 @@ if ($("#payment").val() == "paypal"){
 }
 });
 // payment section & form validation
+// credit card validator
+// Create an object
+var creditCardValidator = {};
+// Pin the cards to them
+creditCardValidator.cards = {
+	'mc':'5[1-5][0-9]{14}',
+	'ec':'5[1-5][0-9]{14}',
+	'vi':'4(?:[0-9]{12}|[0-9]{15})',
+	'ax':'3[47][0-9]{13}',
+	'dc':'3(?:0[0-5][0-9]{11}|[68][0-9]{12})',
+	'bl':'3(?:0[0-5][0-9]{11}|[68][0-9]{12})',
+	'di':'6011[0-9]{12}',
+	'jcb':'(?:3[0-9]{15}|(2131|1800)[0-9]{11})',
+	'er':'2(?:014|149)[0-9]{11}'
+};
+// Add the card validator to them
+creditCardValidator.validate = function(value,ccType) {
+	value = String(value).replace(/[- ]/g,''); //ignore dashes and whitespaces
+
+	var cardinfo = creditCardValidator.cards, results = [];
+	if(ccType){
+		var expr = '^' + cardinfo[ccType.toLowerCase()] + '$';
+		return expr ? !!value.match(expr) : false; // boolean
+	}
+
+	for(var p in cardinfo){
+		if(value.match('^' + cardinfo[p] + '$')){
+			results.push(p);
+		}
+	}
+	return results.length ? results.join('|') : false; // String | boolean
+};
+function validateEmail(email) 
+{
+    var re = /\S+@\S+\.\S+/;
+    return re.test(email);
+}
+function zipVal(zipCode)
+{
+    var re = /(^\d{5}$)|(^\d{5}-\d{4}$)/;
+    return re.test(zipCode);
+} 
+function cvvVal(cvv)
+{
+   var re = /^[0-9]{3}$/; 
+   return re.test(cvv);
+}
 var errorMessage = [];
 errorMessage[0] = "Name field can't be empty"
 errorMessage[1] = "Email field must be a validly formatted e-mail address"
-errorMessage[2] = "At least one activity must be checked from the list under Register for Actitivities."
-errorMessage[3] = "Payment option must be selected."
-errorMessage[4] = "If Credit Card is the selected payment option, make sure you have supplied a credit card number, a zip code, and a 3 number CVV value."
+errorMessage[2] = "At least one activity must be selected"
+errorMessage[3] = "Payment option must be selected." 
+errorMessage[4] = "Make sure you have supplied a valid Credit Card number" 
+errorMessage[5] = "Credit Card must have a valid zip code" 
+errorMessage[6] = "Credit Card must have a valid 3 number CVV value."
 var formCheck = [];
 for (x=0; x<=4; x++){
     formCheck[x] = false;
 }
-if ($("#name").val() != ""){formCheck[0] = true;}
-// if ($("#email")){regex email test formCheck[1] = true}
-if (regTotal > 0){formCheck[2] = true;}
-// if ( valid payment option selected){formCheck[3] = true;}
-// if ( cc info is valid){formCheck[4] = true;}
-// on submit check form validation conditions
-// prompt user withh appropriate error message
-// prevent default on submit if any of the 5 checks are false
+// condition 0 - "Name field can't be empty"
+formCheck[0] = $("#name").val() != "";
+// condition 1 - "Email field must be a validly formatted e-mail address"
+formCheck[1] = validateEmail($("#mail").val());
+// condition 2 - "At least one activity must be selected""
+formCheck[2] = regTotal > 0;
+// condition 3 - "Payment option must be selected." 
+formCheck[3] = ($("#payment").val() = ) && ($("#payment").val() == ) && ($("#payment").val() == ))
+// condition 4 - "Make sure you have supplied a valid Credit Card number" 
+formCheck[4] = creditCardValidator.validate($("#cc-num").val());
+// condition 5 - "Credit Card must have a valid zip code" 
+formCheck[5] = zipVal($("#zip").val());
+// condition 6 - "Credit Card must have a valid 3 number CVV value."
+formCheck[6] = cvvVal($("#cvv").val());
+
+$(":button").onclick{
+   for (var x=0; x<=6; x++){
+       if (formCheck[x] == false){
+           $(":button").preventDefault;
+           alert(errorMessage[x]);
+       }
+   }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
