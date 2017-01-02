@@ -4,16 +4,13 @@ $(document).ready(function(){
     $("#other-title").hide();
 }); 
 // if job role is "other" add text area
-var otherText = document.createElement("textarea");
-var lineBreak = document.createElement("br");
-otherText.setAttribute("rows","1");
-otherText.setAttribute("cols","30");
-otherText.setAttribute("id","other-title");
-otherText.setAttribute("placeholder","Your Title");
+
 $("#title").change(function(){
 	if ($("#title").val() === "other"){
       $("#other-title").show();
-		}
+		} else {
+            $("#other-title").hide();
+        }
 }); 
 
 // hide invalid & show valid color select options for current t-shirt theme
@@ -218,6 +215,7 @@ function cvvVal(cvv)
    return re.test(cvv);
 }
 var errorMessage = [];
+var ok2Submit = false; 
 errorMessage[0] = "Name field can't be empty"
 errorMessage[1] = "Email field must be a validly formatted e-mail address"
 errorMessage[2] = "At least one activity must be selected"
@@ -226,9 +224,7 @@ errorMessage[4] = "Make sure you have supplied a valid Credit Card number"
 errorMessage[5] = "Credit Card must have a valid zip code" 
 errorMessage[6] = "Credit Card must have a valid 3 number CVV value."
 var formCheck = [];
-for (x=0; x<=4; x++){
-    formCheck[x] = false;
-}
+$("input").change(function(){
 // condition 0 - "Name field can't be empty"
 formCheck[0] = $("#name").val() != "";
 // condition 1 - "Email field must be a validly formatted e-mail address"
@@ -236,22 +232,23 @@ formCheck[1] = validateEmail($("#mail").val());
 // condition 2 - "At least one activity must be selected""
 formCheck[2] = regTotal > 0;
 // condition 3 - "Payment option must be selected." 
-formCheck[3] = ($("#payment").val() = ) && ($("#payment").val() == ) && ($("#payment").val() == ))
+formCheck[3] = ($("#payment").val() == "credit card" ) && ($("#payment").val() == "paypal") && ($("#payment").val() == "bitcoin" );
 // condition 4 - "Make sure you have supplied a valid Credit Card number" 
 formCheck[4] = creditCardValidator.validate($("#cc-num").val());
 // condition 5 - "Credit Card must have a valid zip code" 
 formCheck[5] = zipVal($("#zip").val());
 // condition 6 - "Credit Card must have a valid 3 number CVV value."
 formCheck[6] = cvvVal($("#cvv").val());
+})
 
-$(":button").onclick{
+$(":button").click(function(){
    for (var x=0; x<=6; x++){
        if (formCheck[x] == false){
            $(":button").preventDefault;
            alert(errorMessage[x]);
        }
    }
-}
+})
 
 
 
