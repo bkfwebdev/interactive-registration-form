@@ -2,6 +2,7 @@
 $(document).ready(function(){
     $("#name").focus();
     $("#other-title").hide();
+    
 }); 
 // if job role is "other" add text area
 
@@ -214,6 +215,14 @@ function cvvVal(cvv)
    var re = /^[0-9]{3}$/; 
    return re.test(cvv);
 }
+function sevenPointCheck(boolArray){
+    for(var boolIndex = 0; boolIndex <=6; boolIndex++){ 
+      if (boolArray[boolIndex] === false){ 
+        break;
+      }
+    }
+  return boolArray[boolIndex];
+}
 var errorMessage = [];
 var ok2Submit = false; 
 errorMessage[0] = "Name field can't be empty"
@@ -224,6 +233,7 @@ errorMessage[4] = "Make sure you have supplied a valid Credit Card number"
 errorMessage[5] = "Credit Card must have a valid zip code" 
 errorMessage[6] = "Credit Card must have a valid 3 number CVV value."
 var formCheck = [];
+for (y = 0; y <= 6; y++){formCheck[y] = false;}
 $("input").change(function(){
 // condition 0 - "Name field can't be empty"
 formCheck[0] = $("#name").val() != "";
@@ -239,19 +249,14 @@ formCheck[4] = creditCardValidator.validate($("#cc-num").val());
 formCheck[5] = zipVal($("#zip").val());
 // condition 6 - "Credit Card must have a valid 3 number CVV value."
 formCheck[6] = cvvVal($("#cvv").val());
+ok2Submit = sevenPointCheck(formCheck);
 })
 
-$(":button").click(function(){
-   for (var x=0; x<=6; x++){
-       if (formCheck[x] == false){
-           $(":button").preventDefault;
-           alert(errorMessage[x]);
-       }
-   }
-})
-
-
-
+$("form").on("submit",function(e){
+        if (ok2Submit === false){
+            e.preventDefault();
+        }
+    })
 
 
 
