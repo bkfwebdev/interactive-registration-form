@@ -255,6 +255,12 @@ ok2Submit = sevenPointCheck(formCheck);
 $("form").on("submit",function(e){
         if (ok2Submit === false){
             e.preventDefault();
+            for (x=0; x<=6; x++){
+                if (formCheck[x] === false){
+                    alert(errorMessage[x])
+                    break;
+                }
+            }
         }
     })
 
