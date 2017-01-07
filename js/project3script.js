@@ -215,20 +215,39 @@ function cvvVal(cvv)
    var re = /^[0-9]{3}$/; 
    return re.test(cvv);
 }
-function sevenPointCheck(boolArray){
-    for(var boolIndex = 0; boolIndex <=6; boolIndex++){ 
-      if (boolArray[boolIndex] === false){ 
-        break;
-      }
+function checkBasicInfo(boolArray){
+  
+ var boolresult = (boolArray[0] && boolArray[1] && boolArray[2]);
+    return boolresult;
+}
+
+function checkPaymentInfo(){
+    var cpibool = (($("#payment").val() === "paypal") || ($("#payment").val() === "bitcoin" ));
+    var ccbool1 = creditCardValidator.validate($("#cc-num").val());
+    var ccbool2 = zipVal($("#zip").val());
+    var ccbool3 = zipVal($("#zip").val());
+    if (cpibool === true){
+        return cpibool;
+    } else {
+    if ($("#payment").val() === "credit card" ){
+        return (ccbool1 && ccbool2 && ccbool3);
+                        }
     }
-  return boolArray[boolIndex];
+}
+function checkTheEngine(){
+    for (x = 0; x <=6 ; x++){
+        console.log("condition # " + x + " " + formCheck[x]);
+                }
+    console.log(ok2Submit3);
+    console.log($("#payment").val());
 }
 var errorMessage = [];
-var ok2Submit = false; 
+var ok2Submit3 = false;
 errorMessage[0] = "Name field can't be empty"
 errorMessage[1] = "Email field must be a validly formatted e-mail address"
 errorMessage[2] = "At least one activity must be selected"
 errorMessage[3] = "Payment option must be selected." 
+// credit card conditions
 errorMessage[4] = "Make sure you have supplied a valid Credit Card number" 
 errorMessage[5] = "Credit Card must have a valid zip code" 
 errorMessage[6] = "Credit Card must have a valid 3 number CVV value."
@@ -242,17 +261,19 @@ formCheck[1] = validateEmail($("#mail").val());
 // condition 2 - "At least one activity must be selected""
 formCheck[2] = regTotal > 0;
 // condition 3 - "Payment option must be selected." 
-formCheck[3] = ($("#payment").val() == "credit card" ) && ($("#payment").val() == "paypal") && ($("#payment").val() == "bitcoin" );
+formCheck[3] = ($("#payment").val() === "credit card" ) || ($("#payment").val() === "paypal") || ($("#payment").val() === "bitcoin" );
+// if payment type = PP or BC then payment ok = true ortherwise if payment type = cc payment ok = validate cc info
 // condition 4 - "Make sure you have supplied a valid Credit Card number" 
 formCheck[4] = creditCardValidator.validate($("#cc-num").val());
 // condition 5 - "Credit Card must have a valid zip code" 
 formCheck[5] = zipVal($("#zip").val());
 // condition 6 - "Credit Card must have a valid 3 number CVV value."
 formCheck[6] = cvvVal($("#cvv").val());
-ok2Submit = sevenPointCheck(formCheck);
+var ok2Submit = checkBasicInfo(formCheck) && checkPaymentInfo();
 })
 
 $("form").on("submit",function(e){
+    checkTheEngine();
         if (ok2Submit === false){
             e.preventDefault();
             for (x=0; x<=6; x++){
