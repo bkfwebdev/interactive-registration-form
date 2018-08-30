@@ -1,4 +1,4 @@
-# techdegreeproject3
+# Form Practice
 interactive registration form for a hypothetical dev conference
 >set focus on page load
 >t-shirt selector
